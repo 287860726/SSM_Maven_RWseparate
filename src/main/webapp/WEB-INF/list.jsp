@@ -10,22 +10,22 @@
 	<table border="1" width="200px" height="200px" align="center">
 		<tr>
 			<td>
-				<a href="http://127.0.0.1:8080/SSM_Maven_Demo/AuthorController/getAllUser.do">用户</a>
+				<a href="http://127.0.0.1:8080/SSM_Maven_RWseparate/AuthorController/getAllUser.do">用户</a>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<a href="http://127.0.0.1:8080/SSM_Maven_Demo/BookController/getAllBook.do">书</a>
+				<a href="http://127.0.0.1:8080/SSM_Maven_RWseparate/BookController/getAllBook.do">书</a>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<a href="http://127.0.0.1:8080/SSM_Maven_Demo/BookController/AddBook.do">添加一本图书</a>
+				<a href="http://127.0.0.1:8080/SSM_Maven_RWseparate/BookController/AddBook.do">添加一本图书</a>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<a href="http://127.0.0.1:8080/SSM_Maven_Demo/BookController/AddMoreBook.do">添加多本图书</a>
+				<a href="http://127.0.0.1:8080/SSM_Maven_RWseparate/BookController/AddMoreBook.do">添加多本图书</a>
 			</td>
 		</tr>
 	</table>

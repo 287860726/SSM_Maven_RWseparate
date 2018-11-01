@@ -10,11 +10,11 @@ public interface IBookMapper {
 
 	public List<Book> getAllBook() throws Exception;
 	
-	public boolean AddBook(Book book) throws Exception;
+	public boolean addBook(Book book) throws Exception;
 
-	public boolean DelOneBook(Book book) throws Exception;
+	public boolean deleteOneBook(Book book) throws Exception;
 
-	public boolean AddMoreBook(@Param("books")List<Book> books) throws Exception;
+	public boolean addMoreBook(@Param("books")List<Book> books) throws Exception;
 	
 	public Book getBook(Book book) throws Exception;
 }

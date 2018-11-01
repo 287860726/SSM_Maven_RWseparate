@@ -27,9 +27,9 @@ public class BookBiz {
 		return books;
 	}
 	
-	public boolean AddBook(Book book) throws Exception {
+	public boolean addBook(Book book) throws Exception {
 		try {
-			bookdao.AddBook(book);
+			bookdao.addBook(book);
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -37,9 +37,9 @@ public class BookBiz {
 		}
 	}
 	
-	public boolean DelOneBook(Book book) throws Exception {
+	public boolean deleteOneBook(Book book) throws Exception {
 		try {
-			bookdao.DelOneBook(book);
+			bookdao.deleteOneBook(book);
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -47,9 +47,9 @@ public class BookBiz {
 		}
 	}
 	
-	public boolean AddMoreBook(List<Book> books) throws Exception {
+	public boolean addMoreBook(List<Book> books) throws Exception {
 		try {
-			bookdao.AddMoreBook(books);
+			bookdao.addMoreBook(books);
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -66,14 +66,14 @@ public class BookBiz {
 	 * 删除书籍同时删除作者，如果成功删除书籍的同时删除书籍作者，其中任何过程失败，执行回滚。
 	 */
 	@Transactional(rollbackFor = Throwable.class)
-	public boolean DelBookAndAuthor(Book book) throws Exception {
+	public boolean deleteBookAndAuthor(Book book) throws Exception {
 		Book book1 = new Book();
 		book1 = bookdao.getBook(book);
 		Author author = new Author();
 		author.setId(book1.getAuthorid());
 		try {
-			authordao.DelAuthor(author);
-			bookdao.DelOneBook(book);
+			authordao.deleteAuthor(author);
+			bookdao.deleteOneBook(book);
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception

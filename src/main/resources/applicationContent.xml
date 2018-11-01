@@ -22,11 +22,12 @@
 		<property name="location" value="classpath:jdbc.properties" />
 	</bean>
 
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	<!-- 主数据源，支持读写 -->
+	<bean id="ReaddataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="${driver}" />
-		<property name="url" value="${url}" />
-		<property name="username" value="${username}" />
-		<property name="password" value="${password}" />
+		<property name="url" value="${readurl}" />
+		<property name="username" value="${readusername}" />
+		<property name="password" value="${readpassword}" />
 		<!-- 初始化连接大小 -->
 		<property name="initialSize" value="${initialSize}"></property>
 		<!-- 连接池最大数量 -->
@@ -38,6 +39,55 @@
 		<!-- 获取连接最大等待时间 -->
 		<property name="maxWait" value="${maxWait}"></property>
 	</bean>
+	
+	<!--附属数据源，用于读 -->
+	<bean id="WritedataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${driver}" />
+		<property name="url" value="${writeurl}" />
+		<property name="username" value="${writeusername}" />
+		<property name="password" value="${writepassword}" />
+		<!-- 初始化连接大小 -->
+		<property name="initialSize" value="${initialSize}"></property>
+		<!-- 连接池最大数量 -->
+		<property name="maxActive" value="${maxActive}"></property>
+		<!-- 连接池最大空闲 -->
+		<property name="maxIdle" value="${maxIdle}"></property>
+		<!-- 连接池最小空闲 -->
+		<property name="minIdle" value="${minIdle}"></property>
+		<!-- 获取连接最大等待时间 -->
+		<property name="maxWait" value="${maxWait}"></property>
+	</bean>
+
+	<!-- 配置动态分配的读写 数据源 -->
+    <bean id="dataSource" class="com.demo.util.ChooseDataSource" lazy-init="true">
+    	<!-- 设置默认的数据源，这里默认走写库 -->
+        <property name="defaultTargetDataSource" ref="WritedataSource"/>
+        <property name="targetDataSources">
+            <map key-type="java.lang.String" value-type="javax.sql.DataSource">
+            	<!-- read -->
+                <entry key="read" value-ref="ReaddataSource"/>
+                <!-- write -->
+                <entry key="write" value-ref="WritedataSource"/>
+            </map>
+        </property>
+		
+        <property name="methodType">
+            <map key-type="java.lang.String">
+                <!-- read -->
+                <entry key="read" value="get,select,count,list,query"/>
+                <!-- write -->
+                <entry key="write" value="add,create,update,delete,remove"/>
+            </map>
+        </property>
+    </bean>
+    
+    <!-- 使AspectJ注解起作用：自动为匹配的类生成代理对象 -->
+    <!-- 加入 aop 自动扫描 DataSourceAspect 配置数据库注解aop -->
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
+	<!--切面-->
+    <bean id="DataSourceAspect" class="com.demo.util.DataSourceAspect"></bean>
+    
+
 
 	<!-- SqlSessionFactoryBean 是用于创建 SqlSessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

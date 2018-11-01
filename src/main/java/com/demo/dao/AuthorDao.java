@@ -26,8 +26,8 @@ public class AuthorDao {
 		return author1;
 	}
 	
-	public boolean DelAuthor(Author author) throws Exception{
-		return authorMapper.DelAuthor(author);
+	public boolean deleteAuthor(Author author) throws Exception{
+		return authorMapper.deleteAuthor(author);
 	}
 
 }

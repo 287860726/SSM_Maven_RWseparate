@@ -90,7 +90,7 @@ function gohome(){
 				<td>${bookAuthor.bookprice}</td>
 				<td>
 					<a id="xiu${bookAuthor.bookid}" value="${bookAuthor.bookid}"
-						href="<%=basePath%>book/bookAction_AddBook.action?id=${bookAuthor.bookid}&reg=update">修改</a>
+						href="<%=basePath%>BookController/AddBook.do?id=${bookAuthor.bookid}&reg=update">修改</a>
 					<button id="del${bookAuthor.bookid}" value="${bookAuthor.bookid}" onclick="deleteBook(${bookAuthor.bookid},this)">删除</button>
 				</td>
 			</tr>

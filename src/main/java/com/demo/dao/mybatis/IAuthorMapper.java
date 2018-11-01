@@ -10,5 +10,5 @@ public interface IAuthorMapper {
 	
 	public Author getAuthorById(Integer authorid) throws Exception;
 	
-	public boolean DelAuthor(Author author) throws Exception;
+	public boolean deleteAuthor(Author author) throws Exception;
 }

@@ -8,15 +8,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-ma
 		select * from book;
 	</select>
 	
-	<insert id="AddBook" parameterType="Book">
+	<insert id="addBook" parameterType="Book">
 		insert into book(name,price,authorid) values(#{name},#{price},#{authorid})
 	</insert>
 
-	<delete  id="DelOneBook" parameterType="Book">
+	<delete  id="deleteOneBook" parameterType="Book">
 		delete from book where id = #{id}
 	</delete >
 
-	<insert id="AddMoreBook" parameterType="java.util.List">
+	<insert id="addMoreBook" parameterType="java.util.List">
 		insert into book(name,price,authorid) values
 		<foreach collection="books" item="book" separator=",">
 			(#{book.name},#{book.price},#{book.authorid})

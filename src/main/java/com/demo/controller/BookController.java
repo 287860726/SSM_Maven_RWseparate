@@ -60,7 +60,7 @@ public class BookController {
 
 	// 添加一本书籍
 	@RequestMapping("/AddBook")
-	public String AddBook(HttpServletRequest request, ModelMap mm) {
+	public String addBook(HttpServletRequest request, ModelMap mm) {
 		String reg = request.getParameter("reg");
 		String bookid = request.getParameter("id");
 		if (reg == null) {
@@ -116,7 +116,7 @@ public class BookController {
 				book.setId(Integer.parseInt(bookid));
 			}
 			try {
-				bookbiz.AddBook(book);
+				bookbiz.addBook(book);
 				request.setAttribute("msg", "书籍添加成功！");
 				return "addBook";
 			} catch (Exception e) {
@@ -130,7 +130,7 @@ public class BookController {
 
 	// 添加多本书籍
 	@RequestMapping("/AddMoreBook")
-	public String AddMoreBook(HttpServletRequest request, ModelMap mm) {
+	public String addMoreBook(HttpServletRequest request, ModelMap mm) {
 		String reg = request.getParameter("reg");
 		if (reg == null) {
 			reg = "";
@@ -203,7 +203,7 @@ public class BookController {
 			books.add(book);
 			books.add(book1);
 			try {
-				bookbiz.AddMoreBook(books);
+				bookbiz.addMoreBook(books);
 				return "addMoreBook";
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -215,7 +215,7 @@ public class BookController {
 
 	// 删除书籍
 	@RequestMapping("/delOneBook")
-	public String DelOneBook(HttpServletRequest request, ModelMap mm) {
+	public String deleteOneBook(HttpServletRequest request, ModelMap mm) {
 		String id = request.getParameter("id");
 		if (id == null) {
 			id = "";
@@ -226,7 +226,7 @@ public class BookController {
 			Book book = new Book();
 			book.setId(Integer.valueOf(id));
 			try {
-				bookbiz.DelOneBook(book);
+				bookbiz.deleteOneBook(book);
 				return "redirect:/BookController/getAllBook.do";
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -242,13 +242,13 @@ public class BookController {
 	 * 模仿事物 删除书籍同时删除作者
 	 */
 	@RequestMapping("/DelBookAndAuthor")
-	public String DelBookAndAuthor(HttpServletRequest request, ModelMap mm) {
+	public String deleteBookAndAuthor(HttpServletRequest request, ModelMap mm) {
 		String id = request.getParameter("id");
 
 		Book book = new Book();
 		book.setId(Integer.valueOf(id));
 		try {
-			bookbiz.DelBookAndAuthor(book);
+			bookbiz.deleteBookAndAuthor(book);
 			return "redirect:/BookController/getAllBook.do";
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

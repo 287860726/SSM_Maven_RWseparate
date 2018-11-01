@@ -21,9 +21,9 @@ public class BookDao {
 		return books;
 	}
 	
-	public boolean AddBook(Book book) throws Exception{
+	public boolean addBook(Book book) throws Exception{
 		try {
-			bookMapper.AddBook(book);
+			bookMapper.addBook(book);
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -32,9 +32,9 @@ public class BookDao {
 		}
 	}
 	
-	public boolean DelOneBook(Book book) throws Exception{
+	public boolean deleteOneBook(Book book) throws Exception{
 		try {
-			bookMapper.DelOneBook(book);
+			bookMapper.deleteOneBook(book);
 //			throw new Exception("删除数据出错！！！");
 			return true;
 		} catch (Exception e) {
@@ -45,9 +45,9 @@ public class BookDao {
 		}
 	}
 	
-	public boolean AddMoreBook(@Param("books")List<Book> books) throws Exception{
+	public boolean addMoreBook(@Param("books")List<Book> books) throws Exception{
 		try {
-			bookMapper.AddMoreBook(books);
+			bookMapper.addMoreBook(books);
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception

@@ -12,7 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-ma
 		select * from author where id = #{authorid};
 	</select>
 	
-	<delete id="DelAuthor" parameterType="Author">
+	<delete id="deleteAuthor" parameterType="Author">
 		delete from author where id = #{id};
 	</delete>
 
