@@ -1,6 +1,7 @@
 package com.demo.util;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class ChooseDataSource extends AbstractRoutingDataSource {
 	 * 实现父类中的抽象方法，获取数据源名称
 	 * @return
 	 */
+	@Autowired
 	protected Object determineCurrentLookupKey() {
 		return DataSourceHandler.getDataSource();
 	}

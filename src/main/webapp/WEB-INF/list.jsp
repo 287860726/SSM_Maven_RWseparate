@@ -20,6 +20,11 @@
 		</tr>
 		<tr>
 			<td>
+				<a href="http://127.0.0.1:8080/SSM_Maven_RWseparate/BookController/getAllBook2.do">书111111</a>
+			</td>
+		</tr>
+		<tr>
+			<td>
 				<a href="http://127.0.0.1:8080/SSM_Maven_RWseparate/BookController/AddBook.do">添加一本图书</a>
 			</td>
 		</tr>

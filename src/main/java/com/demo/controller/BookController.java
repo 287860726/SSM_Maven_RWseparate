@@ -22,7 +22,7 @@ public class BookController {
 
 	@Autowired
 	private BookBiz bookbiz;
-	
+
 	@Autowired
 	private AuthorBiz authorbiz;
 
@@ -143,7 +143,7 @@ public class BookController {
 		if (bookname1 == null) {
 			bookname1 = "";
 		}
-		
+
 		String authorid = request.getParameter("authorid");
 		if (authorid == null) {
 			authorid = "";
@@ -152,7 +152,7 @@ public class BookController {
 		if (authorid1 == null) {
 			authorid1 = "";
 		}
-		
+
 		String author = request.getParameter("author");
 		String author1 = request.getParameter("author1");
 		if (author == null) {
@@ -178,7 +178,7 @@ public class BookController {
 		if (!price1.equalsIgnoreCase("")) {
 			pri1 = Integer.valueOf(price1);
 		}
-		
+
 		List<Author> authors = null;
 		try {
 			authors = authorbiz.getAllUser();
@@ -186,7 +186,7 @@ public class BookController {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-		
+
 		if (reg == "") {
 			return "addMoreBook";
 		} else {
@@ -256,5 +256,20 @@ public class BookController {
 			return "redirect:/BookController/getAllBook.do";
 
 		}
+	}
+
+	// 查看所有图书
+	@RequestMapping("/getAllBook2")
+	public String getAllBook2(ModelMap mm) {
+		List<Book> books = null;
+		try {
+			books = bookbiz.getAllBook();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "error";
+		}
+		mm.addAttribute("books", books);
+		return "book2";
 	}
 }

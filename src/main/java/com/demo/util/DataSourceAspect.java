@@ -8,6 +8,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 /**
@@ -16,11 +17,13 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 @EnableAspectJAutoProxy(proxyTargetClass = true)
+@Order(1)
 public class DataSourceAspect {
 
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	@Pointcut("execution(* com.demo.dao.mybatis.*.*(..))")
+//	@Pointcut("execution(* com.demo.dao.mybatis..*(..))")
+	@Pointcut("execution(* com.demo.biz..*(..))")
 	public void aspect() {
 	}
 
@@ -36,6 +39,7 @@ public class DataSourceAspect {
 			for (String key : ChooseDataSource.METHOD_TYPE_MAP.keySet()) {
 				for (String type : ChooseDataSource.METHOD_TYPE_MAP.get(key)) {
 					if (method.startsWith(type)) {
+						DataSourceHandler.clearDataSource();
 						DataSourceHandler.putDataSource(key);
 						System.out.println("数据源--------" + key);
 					}

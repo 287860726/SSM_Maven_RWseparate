@@ -5,7 +5,7 @@ package com.demo.util;
  */
 public class DataSourceHandler {
 
-	//使用ThreadLocal记录当前线程的数据源key
+	// 使用ThreadLocal记录当前线程的数据源key
 	public static final ThreadLocal<String> holder = new ThreadLocal<String>();
 
 	/**
@@ -21,4 +21,10 @@ public class DataSourceHandler {
 	public static String getDataSource() {
 		return holder.get();
 	}
+
+	// 清除数据库连接
+	public static void clearDataSource() {
+		holder.remove();
+	}
+
 }
