@@ -35,8 +35,8 @@ public class BookDao {
 	public boolean deleteOneBook(Book book) throws Exception{
 		try {
 			bookMapper.deleteOneBook(book);
-			throw new Exception("删除数据出错！！！");
-//			return true;
+//			throw new Exception("删除数据出错！！！");
+			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
